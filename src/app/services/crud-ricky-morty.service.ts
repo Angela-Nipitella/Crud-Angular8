@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { results } from '../Api/api-mock';
 import { ICharacter } from '../interfaces/rick-morty.interface';
 
@@ -12,17 +11,24 @@ import { ICharacter } from '../interfaces/rick-morty.interface';
 })
 export class CrudRickyMortyService {
    
-  characters: ICharacter[];
+ public characters: ICharacter[];
 
-  constructor(private http: HttpClient) {
+  constructor() {
     
     this.characters = [];
-    this.getCharacter();
+    this.getInitialResponse();
 
   } 
 
-  getCharacter()  {
+  public getInitialResponse()  {
      this.characters = results;
 
+  }
+
+  public getCharacterList() {
+    return this.characters;
+  }
+  public modifyRick(){
+    this.characters[0].name='salvador';
   }
 }
